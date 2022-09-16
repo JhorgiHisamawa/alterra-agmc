@@ -14,7 +14,7 @@ func LoginRepository(data *models.User) (*models.User, error) {
 		return nil, err
 	}
 
-	if data.Token, err = middlewares.CreateToken(data.Role); err != nil {
+	if data.Token, err = middlewares.CreateToken(data.Id); err != nil {
 		return nil, err
 	}
 
@@ -33,7 +33,7 @@ func RegisterRepository(data *models.User) (*models.User, error) {
 		return nil, err
 	}
 
-	if data.Token, err = middlewares.CreateToken(data.Role); err != nil {
+	if data.Token, err = middlewares.CreateToken(data.Id); err != nil {
 		return nil, err
 	}
 

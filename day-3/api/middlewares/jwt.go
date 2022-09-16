@@ -9,22 +9,22 @@ import (
 	"github.com/labstack/echo"
 )
 
-func CreateToken(role string) (string, error) {
+func CreateToken(ID int) (string, error) {
 	claims := jwt.MapClaims{}
 	claims["authorized"] = true
-	claims["role"] = role
+	claims["id"] = ID
 	claims["exp"] = time.Now().Add(time.Hour * 1).Unix() //token expires after 1 hour
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString([]byte(config.Config("SECRET_JWT")))
 }
 
-func ExtractTokenUseRole(e echo.Context) string {
-	user := e.Get("role").(*jwt.Token)
+func ExtractTokenUserID(e echo.Context) interface{} {
+	user := e.Get("user").(*jwt.Token)
 	if user.Valid {
 		claims := user.Claims.(jwt.MapClaims)
-		userRole := claims["role"].(string)
-		return userRole
+		userID := claims["id"]
+		return userID
 	}
-	return "token is invalid"
+	return 0
 }

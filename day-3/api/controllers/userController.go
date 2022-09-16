@@ -3,6 +3,7 @@ package controllers
 import (
 	"api/helpers"
 	"api/lib/database"
+	"api/middlewares"
 	"api/models"
 	"net/http"
 	"strconv"
@@ -54,6 +55,13 @@ func UpdateUser(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 	d := new(models.User)
 
+	//check id is his or her own
+	userId := middlewares.ExtractTokenUserID(c)
+	if float64(id) != userId.(float64) {
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
+			"message": "not authorized",
+		})
+	}
 	req, err := helpers.UserRequest(d, c)
 	helpers.PanicIfError(err)
 
@@ -70,6 +78,14 @@ func UpdateUser(c echo.Context) error {
 func DeleteUser(c echo.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
 	helpers.PanicIfError(err)
+
+	//check id is his or her own
+	userId := middlewares.ExtractTokenUserID(c)
+	if float64(id) != userId.(float64) {
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
+			"message": "not authorized",
+		})
+	}
 
 	getOne, err := database.GetUserByID(id)
 	if err != nil {
