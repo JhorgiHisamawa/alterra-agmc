@@ -1,0 +1,988 @@
+{
+	"info": {
+		"_postman_id": "91b9c317-32da-40e2-807d-2ffcb732eb80",
+		"name": "Day-3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15024443"
+	},
+	"item": [
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Get All Book",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/books",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Book",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:18:58 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "366"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"1\": {\n        \"id\": 1,\n        \"title\": \"melukis pelangi indah\",\n        \"isbn\": \"1-234-5678-9101112-19\",\n        \"writer\": \"Dr. WhoAmI\",\n        \"created_at\": \"16 Sep 22 02:17 +07\",\n        \"updated_at\": \"16 Sep 22 02:18 +07\",\n        \"deleted_at\": \"\"\n    },\n    \"2\": {\n        \"id\": 2,\n        \"title\": \"melukis pelangi a\",\n        \"isbn\": \"1-234-5678-9101112-19\",\n        \"writer\": \"Dr. WhoAmI\",\n        \"created_at\": \"16 Sep 22 02:18 +07\",\n        \"updated_at\": \"16 Sep 22 02:18 +07\",\n        \"deleted_at\": \"\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get A Book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/books/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get A Book",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/books/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"books",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:19:12 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "180"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"title\": \"melukis pelangi indah\",\n    \"isbn\": \"1-234-5678-9101112-19\",\n    \"writer\": \"Dr. WhoAmI\",\n    \"created_at\": \"16 Sep 22 02:17 +07\",\n    \"updated_at\": \"16 Sep 22 02:18 +07\",\n    \"deleted_at\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update A Book",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{email}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"melukis pelangi indah\",\r\n    \"isbn\":\"1-234-5678-9101112-19\",\r\n    \"writer\": \"Dr. WhoAmI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/books/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update A Book",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"melukis pelangi indah\",\r\n    \"isbn\":\"1-234-5678-9101112-19\",\r\n    \"writer\": \"Dr. WhoAmI\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/books/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"books",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:18:44 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "180"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"title\": \"melukis pelangi indah\",\n    \"isbn\": \"1-234-5678-9101112-19\",\n    \"writer\": \"Dr. WhoAmI\",\n    \"created_at\": \"16 Sep 22 02:17 +07\",\n    \"updated_at\": \"16 Sep 22 02:18 +07\",\n    \"deleted_at\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create A Book",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{email}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"melukis pelangi a\",\r\n    \"isbn\":\"1-234-5678-9101112-19\",\r\n    \"writer\": \"Dr. WhoAmI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/books",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create A Book",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"melukis pelangi a\",\r\n    \"isbn\":\"1-234-5678-9101112-19\",\r\n    \"writer\": \"Dr. WhoAmI\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"books"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:17:55 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "176"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"title\": \"melukis pelangi a\",\n    \"isbn\": \"1-234-5678-9101112-19\",\n    \"writer\": \"Dr. WhoAmI\",\n    \"created_at\": \"16 Sep 22 02:17 +07\",\n    \"updated_at\": \"16 Sep 22 02:17 +07\",\n    \"deleted_at\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete A Book",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{email}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/books/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete A Book",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/books/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"books",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:19:30 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"response\": \"success\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"melukis pelangi indah\",\n        \"isbn\": \"1-234-5678-9101112-19\",\n        \"writer\": \"Dr. WhoAmI\",\n        \"created_at\": \"16 Sep 22 02:17 +07\",\n        \"updated_at\": \"16 Sep 22 02:18 +07\",\n        \"deleted_at\": \"16 Sep 22 02:19 +07\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get All Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/v1/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/v1/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:14:10 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1094"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"name\": \"jhorgi\",\n        \"email\": \"test@gmail.com\",\n        \"password\": \"testing\",\n        \"role\": \"non-admin\",\n        \"token\": \"\",\n        \"created_at\": \"2022-09-15T00:45:02+07:00\",\n        \"updated_at\": \"2022-09-15T00:45:02+07:00\",\n        \"deleted_at\": \"0001-01-01T00:00:00Z\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"jhorgi\",\n        \"email\": \"test@gmail.com\",\n        \"password\": \"testing\",\n        \"role\": \"non-admin\",\n        \"token\": \"\",\n        \"created_at\": \"2022-09-15T00:52:38+07:00\",\n        \"updated_at\": \"2022-09-15T00:52:38+07:00\",\n        \"deleted_at\": \"0001-01-01T00:00:00Z\"\n    },\n    {\n        \"id\": 7,\n        \"name\": \"hisamawa\",\n        \"email\": \"test@gmail.com\",\n        \"password\": \"admin\",\n        \"role\": \"admin\",\n        \"token\": \"\",\n        \"created_at\": \"2022-09-15T00:53:29+07:00\",\n        \"updated_at\": \"2022-09-15T00:53:29+07:00\",\n        \"deleted_at\": \"0001-01-01T00:00:00Z\"\n    },\n    {\n        \"id\": 8,\n        \"name\": \"hisamawa\",\n        \"email\": \"euy@gmail.com\",\n        \"password\": \"testing\",\n        \"role\": \"non-admin\",\n        \"token\": \"\",\n        \"created_at\": \"2022-09-15T00:56:56+07:00\",\n        \"updated_at\": \"2022-09-15T01:08:22+07:00\",\n        \"deleted_at\": \"0001-01-01T00:00:00Z\"\n    },\n    {\n        \"id\": 9,\n        \"name\": \"jhorgi\",\n        \"email\": \"test@gmail.com\",\n        \"password\": \"testing\",\n        \"role\": \"non-admin\",\n        \"token\": \"\",\n        \"created_at\": \"2022-09-16T02:13:01+07:00\",\n        \"updated_at\": \"2022-09-16T02:13:01+07:00\",\n        \"deleted_at\": \"0001-01-01T00:00:00Z\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get An User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get An User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/users/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:14:42 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "219"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"name\": \"jhorgi\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"testing\",\n    \"role\": \"non-admin\",\n    \"token\": \"\",\n    \"created_at\": \"2022-09-15T00:45:02+07:00\",\n    \"updated_at\": \"2022-09-15T00:45:02+07:00\",\n    \"deleted_at\": \"0001-01-01T00:00:00Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update An User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\t\r\n    \"name\" \t\t: \"hisamawa\",\r\n    \"email\"\t\t: \"euy@gmail.com\",\r\n    \"password\" \t: \"testing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update An User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\t\r\n    \"name\" \t\t: \"hisamawa\",\r\n    \"email\"\t\t: \"euy@gmail.com\",\r\n    \"password\" \t: \"testing\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/users/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "8"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:15:15 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "239"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 0,\n        \"name\": \"hisamawa\",\n        \"email\": \"euy@gmail.com\",\n        \"password\": \"testing\",\n        \"role\": \"\",\n        \"token\": \"\",\n        \"created_at\": \"0001-01-01T00:00:00Z\",\n        \"updated_at\": \"2022-09-16T02:15:15.842+07:00\",\n        \"deleted_at\": \"0001-01-01T00:00:00Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create An User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\t\r\n    \"name\" \t\t: \"jhorgi\",\r\n    \"email\"\t\t: \"test@gmail.com\",\r\n    \"password\" \t: \"testing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create An User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\t\r\n    \"name\" \t\t: \"jhorgi\",\r\n    \"email\"\t\t: \"test@gmail.com\",\r\n    \"password\" \t: \"testing\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:15:35 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "248"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 10,\n        \"name\": \"jhorgi\",\n        \"email\": \"test@gmail.com\",\n        \"password\": \"testing\",\n        \"role\": \"\",\n        \"token\": \"\",\n        \"created_at\": \"2022-09-16T02:15:35.405+07:00\",\n        \"updated_at\": \"2022-09-16T02:15:35.405+07:00\",\n        \"deleted_at\": \"0001-01-01T00:00:00Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete An User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete An User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/users/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:16:21 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "265"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"jhorgi\",\n        \"email\": \"test@gmail.com\",\n        \"password\": \"testing\",\n        \"role\": \"non-admin\",\n        \"token\": \"\",\n        \"created_at\": \"2022-09-15T00:45:02+07:00\",\n        \"updated_at\": \"2022-09-16T02:16:20.928+07:00\",\n        \"deleted_at\": \"2022-09-16T02:16:20.9279311+07:00\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"test@gmail.com\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"test@gmail.com\",\r\n    \"password\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:13:49 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "393"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 7,\n        \"name\": \"hisamawa\",\n        \"email\": \"test@gmail.com\",\n        \"password\": \"admin\",\n        \"role\": \"admin\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjMyNzI4MjksInJvbGUiOiJhZG1pbiJ9.G39a3BLgWr3ZZy0Uh3-JY-j8-ZUoTQiKbhUiAFsOPAo\",\n        \"created_at\": \"2022-09-15T00:53:29+07:00\",\n        \"updated_at\": \"2022-09-15T00:53:29+07:00\",\n        \"deleted_at\": \"0001-01-01T00:00:00Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\t\r\n    \"name\" \t\t: \"jhorgi\",\r\n    \"email\"\t\t: \"test@gmail.com\",\r\n    \"password\" \t: \"testing\",\r\n    \"role\": \"non-admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\t\r\n    \"name\" \t\t: \"jhorgi\",\r\n    \"email\"\t\t: \"test@gmail.com\",\r\n    \"password\" \t: \"testing\",\r\n    \"role\": \"non-admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 19:13:00 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "411"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 9,\n        \"name\": \"jhorgi\",\n        \"email\": \"test@gmail.com\",\n        \"password\": \"testing\",\n        \"role\": \"non-admin\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjMyNzI3ODAsInJvbGUiOiJub24tYWRtaW4ifQ.-5hDzx06v6-a-4ClsGZJ2Q6K8zKeuUgdn2FWFCnzt20\",\n        \"created_at\": \"2022-09-16T02:13:00.896+07:00\",\n        \"updated_at\": \"2022-09-16T02:13:00.912+07:00\",\n        \"deleted_at\": \"0001-01-01T00:00:00Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
