@@ -70,12 +70,12 @@ func UpdateUser(c echo.Context) error {
 		})
 	}
 	//check id is his or her own
-	// userId := middlewares.ExtractTokenUserID(c)
-	// if float64(id) != userId {
-	// 	return c.JSON(http.StatusUnauthorized, map[string]interface{}{
-	// 		"message": helpers.ErrorUnauthorized,
-	// 	})
-	// }
+	userId := middlewares.ExtractTokenUserID(c)
+	if float64(id) != userId {
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
+			"message": helpers.ErrorUnauthorized,
+		})
+	}
 
 	req, err := helpers.UserRequest(d, c)
 	if err != nil {
@@ -98,12 +98,12 @@ func DeleteUser(c echo.Context) error {
 	helpers.PanicIfError(err)
 
 	//check id is his or her own
-	// userId := middlewares.ExtractTokenUserID(c)
-	// if float64(id) != userId {
-	// 	return c.JSON(http.StatusUnauthorized, map[string]interface{}{
-	// 		"message": helpers.ErrorUnauthorized,
-	// 	})
-	// }
+	userId := middlewares.ExtractTokenUserID(c)
+	if float64(id) != userId {
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
+			"message": helpers.ErrorUnauthorized,
+		})
+	}
 
 	getOne, err := database.GetUserByID(id)
 	if err != nil {
