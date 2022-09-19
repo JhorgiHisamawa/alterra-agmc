@@ -19,15 +19,12 @@ import (
 )
 
 func TestGetAllBooksEmpty(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 
-	//setup request
 	req := httptest.NewRequest(http.MethodGet, "/books", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
-	//test
 	assert.NoError(t, controllers.GetAllBook(c))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
@@ -36,7 +33,6 @@ func TestGetAllBooksEmpty(t *testing.T) {
 }
 
 func TestCreateBookSuccess(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 	e.Validator = &config.CustomValidator{Validator: validator.New()}
 
@@ -46,14 +42,12 @@ func TestCreateBookSuccess(t *testing.T) {
 		Writer: "the writer",
 	}
 
-	//setup request
 	data, _ := json.Marshal(body)
 	req := httptest.NewRequest(http.MethodPost, "/books", strings.NewReader(string(data)))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
-	//test
 	assert.NoError(t, controllers.CreateBook(c))
 	assert.Equal(t, http.StatusCreated, rec.Code)
 	result := map[string]interface{}{}
@@ -62,7 +56,6 @@ func TestCreateBookSuccess(t *testing.T) {
 }
 
 func TestCreateBookBadRequest(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 	e.Validator = &config.CustomValidator{Validator: validator.New()}
 
@@ -72,14 +65,12 @@ func TestCreateBookBadRequest(t *testing.T) {
 		Writer: "the writer",
 	}
 
-	//setup request
 	data, _ := json.Marshal(body)
 	req := httptest.NewRequest(http.MethodPost, "/books", strings.NewReader(string(data)))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
-	//test
 	assert.NoError(t, controllers.CreateBook(c))
 	assert.Equal(t, http.StatusBadRequest, rec.Code)
 	result := map[string]interface{}{}
@@ -88,15 +79,12 @@ func TestCreateBookBadRequest(t *testing.T) {
 }
 
 func TestGetAllBooksSuccess(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 
-	//setup request
 	req := httptest.NewRequest(http.MethodGet, "/books", nil)
 	rec := httptest.NewRecorder()
 	cg := e.NewContext(req, rec)
 
-	//test
 	assert.NoError(t, controllers.GetAllBook(cg))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
@@ -105,17 +93,14 @@ func TestGetAllBooksSuccess(t *testing.T) {
 }
 
 func TestGetOneBookNotFound(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 
-	//setup request
 	req := httptest.NewRequest(http.MethodGet, "/books", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 	c.SetParamNames("id")
 	c.SetParamValues("9")
 
-	//test
 	assert.NoError(t, controllers.GetOneBook(c))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
@@ -159,7 +144,6 @@ func TestGetOneBookSuccess(t *testing.T) {
 }
 
 func TestUpdateBookButBookNotFound(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 
 	mockBook := models.Book{
@@ -182,7 +166,6 @@ func TestUpdateBookButBookNotFound(t *testing.T) {
 		Writer: "the writer",
 	}
 
-	//setup request
 	data, _ := json.Marshal(body)
 	req := httptest.NewRequest(http.MethodPut, "/books", strings.NewReader(string(data)))
 	rec := httptest.NewRecorder()
@@ -191,7 +174,6 @@ func TestUpdateBookButBookNotFound(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("9")
 
-	//test
 	assert.NoError(t, controllers.UpdateBook(c))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
@@ -200,7 +182,6 @@ func TestUpdateBookButBookNotFound(t *testing.T) {
 }
 
 func TestUpdateBookBadRequest(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 	e.Validator = &config.CustomValidator{Validator: validator.New()}
 
@@ -224,8 +205,6 @@ func TestUpdateBookBadRequest(t *testing.T) {
 		Writer: "the writer",
 	}
 
-	//setup request
-	data, _ := json.Marshal(body)
 	req := httptest.NewRequest(http.MethodPut, "/books", strings.NewReader(string(data)))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
@@ -234,7 +213,6 @@ func TestUpdateBookBadRequest(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("1")
 
-	//test
 	assert.NoError(t, controllers.UpdateBook(c))
 	assert.Equal(t, http.StatusBadRequest, rec.Code)
 	result := map[string]interface{}{}
@@ -243,7 +221,6 @@ func TestUpdateBookBadRequest(t *testing.T) {
 }
 
 func TestUpdateBookButBookSucccess(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 	e.Validator = &config.CustomValidator{Validator: validator.New()}
 
@@ -267,7 +244,6 @@ func TestUpdateBookButBookSucccess(t *testing.T) {
 		Writer: "the writer",
 	}
 
-	//setup request
 	data, _ := json.Marshal(body)
 	req := httptest.NewRequest(http.MethodPut, "/books", strings.NewReader(string(data)))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
@@ -277,7 +253,6 @@ func TestUpdateBookButBookSucccess(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("1")
 
-	//test
 	assert.NoError(t, controllers.UpdateBook(c))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
@@ -286,7 +261,6 @@ func TestUpdateBookButBookSucccess(t *testing.T) {
 }
 
 func TestDeleteBookButBookNotFound(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 
 	mockBook := models.Book{
@@ -303,7 +277,6 @@ func TestDeleteBookButBookNotFound(t *testing.T) {
 		1: &mockBook,
 	}
 
-	//setup request
 	req := httptest.NewRequest(http.MethodDelete, "/books", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
@@ -311,7 +284,6 @@ func TestDeleteBookButBookNotFound(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("9")
 
-	//test
 	assert.NoError(t, controllers.DeleteBook(c))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
@@ -320,7 +292,6 @@ func TestDeleteBookButBookNotFound(t *testing.T) {
 }
 
 func TestDeleteBookSuccess(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 
 	mockBook := models.Book{
@@ -337,7 +308,6 @@ func TestDeleteBookSuccess(t *testing.T) {
 		1: &mockBook,
 	}
 
-	//setup request
 	req := httptest.NewRequest(http.MethodDelete, "/books", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
@@ -345,7 +315,6 @@ func TestDeleteBookSuccess(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("1")
 
-	//test
 	assert.NoError(t, controllers.DeleteBook(c))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
