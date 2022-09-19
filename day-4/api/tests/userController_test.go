@@ -36,7 +36,6 @@ var token string
 
 func TestLogin(t *testing.T) {
 	DBInit(t)
-	//setup echo context
 	e := echo.New()
 	e.Validator = &config.CustomValidator{Validator: validator.New()}
 
@@ -45,14 +44,12 @@ func TestLogin(t *testing.T) {
 		Password: "passwordtest",
 	}
 
-	//setup request
 	data, _ := json.Marshal(body)
 	req := httptest.NewRequest(http.MethodPost, "/login", strings.NewReader(string(data)))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
-	//test
 	assert.NoError(t, controllers.Login(c))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
@@ -63,14 +60,12 @@ func TestLogin(t *testing.T) {
 }
 func TestGetAllUserEmpty(t *testing.T) {
 	DBInitEmpty(t)
-	//setup echo context
 	e := echo.New()
-	//setup request
+	
 	req := httptest.NewRequest(http.MethodGet, "/users", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
-	//test
 	assert.NoError(t, controllers.GetAllUser(c))
 	assert.Equal(t, http.StatusNotFound, rec.Code)
 	result := map[string]interface{}{}
@@ -79,7 +74,6 @@ func TestGetAllUserEmpty(t *testing.T) {
 }
 
 func TestCreateUserSuccess(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 	e.Validator = &config.CustomValidator{Validator: validator.New()}
 
@@ -90,14 +84,12 @@ func TestCreateUserSuccess(t *testing.T) {
 		Role:     "test",
 	}
 
-	//setup request
 	data, _ := json.Marshal(body)
 	req := httptest.NewRequest(http.MethodPost, "/users", strings.NewReader(string(data)))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
-	//test
 	assert.NoError(t, controllers.CreateUser(c))
 	assert.Equal(t, http.StatusCreated, rec.Code)
 	result := map[string]interface{}{}
@@ -106,7 +98,6 @@ func TestCreateUserSuccess(t *testing.T) {
 }
 
 func TestCreateUserBadRequest(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 	e.Validator = &config.CustomValidator{Validator: validator.New()}
 
@@ -117,14 +108,12 @@ func TestCreateUserBadRequest(t *testing.T) {
 		Role:     "test",
 	}
 
-	//setup request
 	data, _ := json.Marshal(body)
 	req := httptest.NewRequest(http.MethodPost, "/users", strings.NewReader(string(data)))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
-	//test
 	assert.NoError(t, controllers.CreateUser(c))
 	assert.Equal(t, http.StatusBadRequest, rec.Code)
 	result := map[string]interface{}{}
@@ -134,15 +123,12 @@ func TestCreateUserBadRequest(t *testing.T) {
 
 func TestGetAllUsersSuccess(t *testing.T) {
 	DBInit(t)
-	//setup echo context
 	e := echo.New()
 
-	//setup request
 	req := httptest.NewRequest(http.MethodGet, "/users", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
-	//test
 	assert.NoError(t, controllers.GetAllUser(c))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
@@ -152,17 +138,14 @@ func TestGetAllUsersSuccess(t *testing.T) {
 
 func TestGetOneUserNotFound(t *testing.T) {
 	DBInit(t)
-	//setup echo context
 	e := echo.New()
 
-	//setup request
 	req := httptest.NewRequest(http.MethodGet, "/users", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 	c.SetParamNames("id")
 	c.SetParamValues("9")
 
-	//test
 	assert.NoError(t, controllers.GetOneUser(c))
 	assert.Equal(t, http.StatusNotFound, rec.Code)
 	result := map[string]interface{}{}
@@ -172,10 +155,8 @@ func TestGetOneUserNotFound(t *testing.T) {
 
 func TestGetOneUserSuccess(t *testing.T) {
 	DBInit(t)
-	//setup echo context
 	e := echo.New()
 
-	//setup request
 	req := httptest.NewRequest(http.MethodGet, "/users", nil)
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
@@ -184,7 +165,6 @@ func TestGetOneUserSuccess(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("1")
 
-	//test
 	assert.NoError(t, controllers.GetOneUser(c))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
@@ -194,7 +174,6 @@ func TestGetOneUserSuccess(t *testing.T) {
 
 func TestUpdateUserButUserNotFound(t *testing.T) {
 	DBInit(t)
-	//setup echo context
 	e := echo.New()
 
 	body := models.User{
@@ -204,7 +183,6 @@ func TestUpdateUserButUserNotFound(t *testing.T) {
 		Role:     "test",
 	}
 
-	//setup request
 	data, _ := json.Marshal(body)
 	req := httptest.NewRequest(http.MethodPut, "/users", strings.NewReader(string(data)))
 	rec := httptest.NewRecorder()
@@ -213,7 +191,6 @@ func TestUpdateUserButUserNotFound(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("9")
 
-	//test
 	assert.NoError(t, controllers.UpdateUser(c))
 	assert.Equal(t, http.StatusNotFound, rec.Code)
 	result := map[string]interface{}{}
@@ -223,7 +200,6 @@ func TestUpdateUserButUserNotFound(t *testing.T) {
 
 func TestUpdateUserBadRequest(t *testing.T) {
 	DBInit(t)
-	//setup echo context
 	e := echo.New()
 	e.Validator = &config.CustomValidator{Validator: validator.New()}
 
@@ -234,7 +210,6 @@ func TestUpdateUserBadRequest(t *testing.T) {
 		Role:     "test",
 	}
 
-	//setup request
 	data, _ := json.Marshal(body)
 	req := httptest.NewRequest(http.MethodPut, "/users", strings.NewReader(string(data)))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
@@ -244,7 +219,6 @@ func TestUpdateUserBadRequest(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("1")
 
-	//test
 	assert.NoError(t, controllers.UpdateUser(c))
 	assert.Equal(t, http.StatusBadRequest, rec.Code)
 	result := map[string]interface{}{}
@@ -254,7 +228,6 @@ func TestUpdateUserBadRequest(t *testing.T) {
 
 func TestUpdateUserSucccess(t *testing.T) {
 	DBInit(t)
-	//setup echo context
 	e := echo.New()
 	e.Validator = &config.CustomValidator{Validator: validator.New()}
 
@@ -265,7 +238,6 @@ func TestUpdateUserSucccess(t *testing.T) {
 		Role:     "test",
 	}
 
-	//setup request
 	data, _ := json.Marshal(body)
 	req := httptest.NewRequest(http.MethodPut, "/users", strings.NewReader(string(data)))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
@@ -275,7 +247,6 @@ func TestUpdateUserSucccess(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("1")
 
-	//test
 	assert.NoError(t, controllers.UpdateUser(c))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
@@ -284,10 +255,8 @@ func TestUpdateUserSucccess(t *testing.T) {
 }
 
 func TestDeleteUserButBookNotFound(t *testing.T) {
-	//setup echo context
 	e := echo.New()
 
-	//setup request
 	req := httptest.NewRequest(http.MethodDelete, "/users", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
@@ -295,7 +264,6 @@ func TestDeleteUserButBookNotFound(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("9")
 
-	//test
 	assert.NoError(t, controllers.DeleteUser(c))
 	assert.Equal(t, http.StatusNotFound, rec.Code)
 	result := map[string]interface{}{}
@@ -305,10 +273,8 @@ func TestDeleteUserButBookNotFound(t *testing.T) {
 
 func TestDeleteUserSuccess(t *testing.T) {
 	DBInit(t)
-	//setup echo context
 	e := echo.New()
 
-	//setup request
 	req := httptest.NewRequest(http.MethodDelete, "/users", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
@@ -316,7 +282,6 @@ func TestDeleteUserSuccess(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("1")
 
-	//test
 	assert.NoError(t, controllers.DeleteUser(c))
 	assert.Equal(t, http.StatusOK, rec.Code)
 	result := map[string]interface{}{}
