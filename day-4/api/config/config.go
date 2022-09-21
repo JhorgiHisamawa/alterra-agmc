@@ -20,8 +20,7 @@ type (
 )
 
 func ConnectDB() {
-	// dsn := Config("DB_USER") + ":" + Config("DB_PASSWORD") + "@tcp(" + Config("DB_HOST") + ":" + Config("DB_PORT") + ")/" + Config("DB_NAME") + "?charset=utf8&parseTime=true&loc=Local"
-	dsn := `mysql:Ronaldinho_96@tcp(localhost:3306)/altera_db?charset=utf8&parseTime=true&loc=Local`
+	dsn := Config("DB_USER") + ":" + Config("DB_PASSWORD") + "@tcp(" + Config("DB_HOST") + ":" + Config("DB_PORT") + ")/" + Config("DB_NAME") + "?charset=utf8&parseTime=true&loc=Local"
 	var err error
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
