@@ -1,30 +1,5 @@
 FROM alpine:latest
 
-RUN mkdir /app
-
-COPY appName /app
+RUN mkdir /book-api
 
 CMD [ "/app/api"]
-
-version: "3.9"
-services:
-  app:
-    build:
-      dockerfile: Dockerfile
-      context: .
-      target: dev
-    volumes:
-    - .:/opt/app/api
-    environment:
-      API_SERVER_ADDR: ":3000"
-      DATABASE_URL: postgres://local-dev@db/api?sslmode=disable
-    ports:
-    - "3000:3000"
-  db:
-    image: postgres:13-alpine
-    volumes:
-      - data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: api
-      POSTGRES_USER: local-dev
-      POSTGRES_HOST_AUTH_METHOD: trust
